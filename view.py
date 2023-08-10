@@ -1,15 +1,15 @@
+from datetime import datetime, date, time
 
-# def input_choice(size: int, message: str):
-#     while True:
-#         number = input(message)
-#         if number.isdigit() and 0 < int(number) < size + 1:
-#             return int(number)
-#         else:
-#             print(tf.wrong_choice(size))
+navi_but = ['list', 'add', 'show', 'edit', 'del', 'exit']
 
-# def main_theme() -> int:
-#     print(*tf.menu, sep='\n')
-#     return input_choice(len(tf.menu) -1, tf.input_choice)
+def input_choice():
+    keyword = input('Enter command: ')
+    for data in navi_but:
+        if keyword == data:
+            return keyword
+    else:
+        print('Enter correct command!')
+
 
 # def show_contact(book: list[dict[str, str]], message: str):
 #     if book:
@@ -25,65 +25,15 @@
 #     print(message)
 #     print('=' * len(message) + '\n')
 
-# def input_contact(message: list[str]) -> dict[str, str]:
-#     contact = {}
-#     name = input(message[0])
-#     phone = input(message[1])
-#     if name:
-#         contact['name'] = name
-#     if phone:
-#         contact['phone'] = phone
-#     return contact
-
-# def input_index(message: str, pb: list) -> int:
-
-#     while True:
-#         index = input(message)
-#         if index.isdigit() and 0 < int(index) < len(pb) + 1:
-#             return int(index)
+def input_notes(new_id: int):
+    note = {}
+    print('Welcome friend! Enter new note: ')
+    note['id'] = str(new_id)
+    note['date'] = datetime.now().strftime('%d-%m-%Y %H:%M:%S')
+    note['title'] = input('Enter your title: ')
+    note['note'] = input('Enter your thoughts: ')
+    return note
 
 # def input_search(message) -> str:
 #     return input(message)
 
-# menu = ['Main menu:',
-#     '\t1. Open file',
-#     '\t2. Save file',
-#     '\t3. Show all contacts',
-#     '\t4. Add contact',
-#     '\t5. Find contact',
-#     '\t6. Change contact',
-#     '\t7. Delete contact',
-#     '\t8. Exit\n']
-
-# input_choice = 'Choose a point from menu: '
-
-# def wrong_choice(limit: int) -> str:
-#     return f'Incorrect point. Please enter point from 1 to {limit}'
-
-# empty_phone_book = 'Phone book is empty or not open!'
-
-# open_successful = 'Phone book successfully open'
-# add_successful = 'Contact successfully added'
-# save_successful = 'PhoneBook successfully saved'
-
-# def change_sucessful(name: str) -> str:
-#     return f'Contact {name} successfully changed'
-
-# new_contact = ['Enter Name: ', 'Enter Phone: ']
-# change_contact = ['Enter Name or press Enter to skip: ', 'Enter Phone or press Enter to skip: ']
-# change_choice = 'Choose contact to change: '
-# def add_contact_successful(name: str) -> str:
-#     return f'Contact {name} successfully added'
-
-# def changed(name: str) -> str:
-#     return f'Contact {name} was changed'
-
-# index_del_contact = 'Enter index of contact which you want to delete: '
-
-# def del_contact(name: str):
-#     return f'Contact {name} successfully deleted'
-
-# input_search = 'What you looking for: '
-
-# def empty_search(word) -> str:
-#     return f'Contacts with "{word}" not found'

@@ -1,13 +1,40 @@
 import view
 import model
 
-# def start():
-#     while True:
-#         choice = view.main_theme()
-#         match choice:
-#             case 1:
-#                 model.open_file()
-#                 view.print_message(tf.open_successful)
+my_notes = model.Notes('notes.json')
+
+def start():
+
+    while True:
+        print('Main menu:\n',
+        'list - show all notes\n',
+        'add  - add new note\n',
+        'show - show note\n',
+        'edit - edit note\n',
+        'del  - delete note\n',
+        'exit - save & exit\n')
+
+        choice = view.input_choice()
+
+        match choice:
+            case 'list':
+                my_notes.get_notes()
+                print('What u wanna do?')
+            case 'add':
+                note = view.input_notes(my_notes.get_id())
+                title = my_notes.add_note(note)
+                print('Note "' + title + '" successfully added')
+            case 'show':
+                pass
+            case 'edit':
+                pass
+            case 'del':
+                pass
+            case 'exit':
+                my_notes.save_note()
+                print('Notes successfully saved')
+                break
+
 #             case 2:
 #                 model.save_file()
 #                 view.print_message(tf.save_successful)
@@ -18,10 +45,6 @@ import model
 #                 new_contact = view.input_contact(tf.new_contact)
 #                 name = model.add_contact(new_contact)
 #                 view.print_message(tf.add_contact_successful(name))
-#             case 5:
-#                 key_word = view.input_search(tf.input_search)
-#                 result = model.search_contact(key_word)
-#                 view.show_contact(result, tf.empty_search(key_word))
 #             case 6:
 #                 pb = model.phone_book
 #                 view.show_contact(pb, '')
@@ -34,5 +57,3 @@ import model
 #                 index = view.input_index(tf.index_del_contact, pb)
 #                 name = model.del_contact(index)
 #                 view.print_message(tf.del_contact(name))
-#             case 8:
-#                 break
