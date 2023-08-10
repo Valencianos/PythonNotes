@@ -18,8 +18,9 @@ def start():
 
         match choice:
             case 'list':
-                my_notes.get_notes()
-                print('What u wanna do?')
+                notes = my_notes.get_notes()
+                view.print_notes(notes)
+                print('What u gonna do?')
             case 'add':
                 note = view.input_notes(my_notes.get_id())
                 title = my_notes.add_note(note)

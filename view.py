@@ -10,15 +10,14 @@ def input_choice():
     else:
         print('Enter correct command!')
 
-
-# def show_contact(book: list[dict[str, str]], message: str):
-#     if book:
-#         print('\n' + '=' * 55)
-#         for i, contact in enumerate(book, 1):
-#             print(f'{i:<3} | {contact["name"]:<30} | {contact["phone"]:<15}')
-#         print('=' * 55 + '\n')
-#     else:
-#         print(message)
+def print_notes(book: list[dict[str, str]]):
+    if book:
+        print('-' * 122)
+        for i, contact in enumerate(book, 1):
+            print(f'{i:<3} | {contact["title"]:<30} | {contact["note"]:<60} | {contact["date"]:<20}')
+        print('-' * 122)
+    else:
+        print('Something went wrong')
 
 # def print_message(message: str):
 #     print('\n' + '=' * len(message))
