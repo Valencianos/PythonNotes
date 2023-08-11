@@ -1,5 +1,4 @@
 import json
-import datetime
 
 class Notes:
 
@@ -25,13 +24,6 @@ class Notes:
             id = 1
         return id
 
-    # def print_list_notes(notes):
-    #     count = 0
-    #     for note in notes['id']:
-    #         count += 1
-    #         print(f"id: {note['id']} {note['date']} '{note['title']}' ")
-    #     print(f"Total notes - {count}\n")
-
     def add_note(self, note: dict[str, str]):
         self.notes.append(note)
         return note.get('title')
@@ -39,16 +31,21 @@ class Notes:
     def get_notes(self) -> list(dict[str,str]):
         return self.notes
 
-    # def add_contact(contact: dict[str, str]):
-    #     global phone_book
-    #     phone_book.append(contact)
-    #     return contact.get('name')
+    def del_note(self, index: int):
+        return self.notes.pop(index-1).get('title')
 
-    # def change(ind: int, contact: dict[str, str]) -> dict[str, str]:
-    #     cur_contact = phone_book[ind]
-    #     cur_contact.update(contact)
-    #     result = phone_book.pop(ind)
-    #     phone_book.insert(ind, cur_contact)
-    #     return result
+    def search_notes(self, word: str) -> list[dict[str, str]]:
+        result: list[dict[str, str]] = []
+        for note in self.notes:
+            for field in note.values():
+                if word.lower().strip() in field.lower().strip():
+                    result.append(note)
+                    break
+        return result
 
-
+    def change_notes(self, note: dict[str, str], index: int):
+        if len(note['title']) > 0:
+            self.notes[index-1]['title'] = note['title']
+        if len(note['note']) > 0:
+            self.notes[index-1]['note'] = note['note']
+        self.notes[index-1]['datetime'] = note['datetime']

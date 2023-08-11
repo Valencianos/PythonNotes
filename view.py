@@ -1,6 +1,6 @@
-from datetime import datetime, date, time
+from datetime import datetime
 
-navi_but = ['list', 'add', 'show', 'edit', 'del', 'exit']
+navi_but = ['list', 'add', 'show', 'edit', 'del', 'exit', 'save', 'open']
 
 def input_choice():
     keyword = input('Enter command: ')
@@ -10,29 +10,35 @@ def input_choice():
     else:
         print('Enter correct command!')
 
-def print_notes(book: list[dict[str, str]]):
-    if book:
+def print_notes(notes: list[dict[str, str]]):
+    if notes:
         print('-' * 122)
-        for i, contact in enumerate(book, 1):
-            print(f'{i:<3} | {contact["title"]:<30} | {contact["note"]:<60} | {contact["date"]:<20}')
+        for id, data in enumerate(notes, 1):
+            print(f'{id:<3} | {data["title"]:<30} | {data["note"]:<60} | {data["date"]:<20}')
         print('-' * 122)
     else:
-        print('Something went wrong')
+        print_message('Something went wrong or notes is empty')
 
-# def print_message(message: str):
-#     print('\n' + '=' * len(message))
-#     print(message)
-#     print('=' * len(message) + '\n')
+def print_message(message: str):
+    print('-' * len(message))
+    print(message)
+    print('-' * len(message))
 
 def input_notes(new_id: int):
-    note = {}
+    temp_note = {}
     print('Welcome friend! Enter new note: ')
-    note['id'] = str(new_id)
-    note['date'] = datetime.now().strftime('%d-%m-%Y %H:%M:%S')
-    note['title'] = input('Enter your title: ')
-    note['note'] = input('Enter your thoughts: ')
-    return note
+    temp_note['id'] = str(new_id)
+    temp_note['date'] = datetime.now().strftime('%d-%m-%Y %H:%M:%S')
+    temp_note['title'] = input('Enter title: ')
+    temp_note['note'] = input('Enter notes: ')
+    return temp_note
 
-# def input_search(message) -> str:
-#     return input(message)
+def input_search(message) -> str:
+    return input(message)
 
+def input_index(message: str, notes: list) -> int:
+    print_notes(notes)
+    while True:
+        index = input(message)
+        if index.isdigit() and 0 < int(index) < len(notes) + 1:
+            return int(index)
